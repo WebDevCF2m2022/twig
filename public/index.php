@@ -27,13 +27,9 @@ try {
     exit;
 }
 
-$a = new \MyModels\Mapping\permissionMapping(['idpermission' => 1, 'permissionname' => 'test', 'permissionrole' => 5]);
+// router
 
-var_dump($a);
-
-$b = new \MyModels\Manager\permissionManager($pdo);
-
-var_dump($b->permissionSelectAll());
+include "../controller/publicController.php";
 
 // close connection (portabilité hors MySQL, mettre en commentaire en cas de connexion permanente)
 $pdo = null;
