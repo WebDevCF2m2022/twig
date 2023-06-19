@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+# chemins vers Twig
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
+
 
 // dependencies
 require_once "../config.php";
@@ -10,6 +14,18 @@ spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     require '../' .$class . '.php';
 });
+
+// autoload from composer
+require_once "../vendor/autoload.php";
+
+// twig
+# chemin vers le dossier des templates
+$loader = new FilesystemLoader('../view');
+# instanciation de l'environnement Twig
+$twig = new Environment($loader, [
+    'cache' => false,
+    'debug' => true
+]);
 
 // db connection
 try {

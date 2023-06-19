@@ -19,10 +19,14 @@ class thesectionManager implements ManagerInterface
         $this->connect = $db;
     }
 
-    public function SelectAllThesection(): array{
+    public function SelectAllThesection(): string|array{
         $prepare = $this->connect->prepare("SELECT idthesection, thesectiontitle, thesectionslug FROM thesection  ORDER BY idthesection ASC;");
-        $prepare->execute();
-        $prepare->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $prepare->execute();
+            $prepare->fetchAll();
+        }catch (Exception $e) {
+            return $e->getMessage();
+        }
         foreach ($prepare as $row){
             $thesection[] = new ThesectionMapping($row);
         }

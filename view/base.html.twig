@@ -1,11 +1,19 @@
+{# view/base.html.twig #}
+{# Ceci est un commentaire,
+Les block comme
+    {% block title %}Hello {% endblock %}
+seront les seuls modifiables par les vues enfants.
+#}
 <!DOCTYPE html>
 <html lang="fr">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
     <head>
     <meta charset="UTF-8">
-        <title>{% block title %}Hello {% endblock %}</title>
+        <title>{% block title %}Twig{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body id="{% block pagetype %}{% endblock %}">
+    <body>
     {% block body %}{% endblock %}
     {% block javascripts %}{% endblock %}
     </body>
