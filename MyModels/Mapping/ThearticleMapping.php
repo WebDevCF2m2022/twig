@@ -4,8 +4,9 @@ namespace MyModels\Mapping;
 
 use MyModels\Abstract\AbstractMapping;
 use MyModels\Trait\SlugifyTrait;
+use Exception;
 
-class thearticleMapping extends AbstractMapping
+class ThearticleMapping extends AbstractMapping
 {
 
     // Propriétés
@@ -39,7 +40,7 @@ class thearticleMapping extends AbstractMapping
         // dépasse 120 caractères
         if (strlen($thearticleslug) > 120) {
             // affichage de l'erreur
-            trigger_error("La longueur du slug ne doit pas dépasser 120 caractères", E_USER_NOTICE);
+            throw new Exception("La longueur du slug ne doit pas dépasser 120 caractères");
             return $this;
         }
         else {
@@ -61,7 +62,7 @@ class thearticleMapping extends AbstractMapping
         // dépasse 120 caractères
         if (strlen($thearticleresume) > 250) {
             // affichage de l'erreur
-            trigger_error("La longueur du résumé ne doit pas dépasser 250 caractères", E_USER_NOTICE);
+            throw new Exception("La longueur du résumé ne doit pas dépasser 250 caractères");
             return $this;
         }
         else {
@@ -131,7 +132,7 @@ class thearticleMapping extends AbstractMapping
         // dépasse 120 caractères
         if (strlen($thearticletitle) > 120) {
             // affichage de l'erreur
-            trigger_error("La longueur du titre ne doit pas dépasser 120 caractères", E_USER_NOTICE);
+            throw new Exception("La longueur du titre ne doit pas dépasser 120 caractères");
             return $this;
         }
         else {
@@ -156,5 +157,10 @@ class thearticleMapping extends AbstractMapping
     {
         $this->thearticleactivate = $thearticleactivate;
         return $this;
+    }
+
+    public function __toString() : string
+    {
+        return $this->getArticleTitle();
     }
 }

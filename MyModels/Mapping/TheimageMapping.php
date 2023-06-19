@@ -4,7 +4,7 @@ namespace MyModels\Mapping;
 
 use MyModels\Abstract\AbstractMapping;
 
-class theimageMapping extends AbstractMapping
+class TheimageMapping extends AbstractMapping
 {
     private int $idtheimage;
     private string $theimagename;
@@ -52,7 +52,7 @@ class theimageMapping extends AbstractMapping
     {
         if(strlen($theimagename)>45){
             // affichage de l'erreur
-            trigger_error("Le nom de l'image ne doit pas dépasser 45 caractères", E_USER_NOTICE);
+            throw new Exception("Le nom de l'image ne doit pas dépasser 45 caractères");
             return $this;
         }else {
             $this->theimagename = $theimagename;
@@ -64,7 +64,7 @@ class theimageMapping extends AbstractMapping
     {
         if(strlen($theimagetype)>5){
             // affichage de l'erreur
-            trigger_error("Le type de l'image ne doit pas dépasser 5 caractères", E_USER_NOTICE);
+            throw new Exception("Le type de l'image ne doit pas dépasser 5 caractères");
             return $this;
         }else {
             $this->theimagetype = $theimagetype;
@@ -76,7 +76,7 @@ class theimageMapping extends AbstractMapping
     {
         if(strlen($theimageurl)>100){
             // affichage de l'erreur
-            trigger_error("L'URL de l'image ne doit pas dépasser 100 caractères", E_USER_NOTICE);
+            throw new Exception("L'URL de l'image ne doit pas dépasser 100 caractères");
             return $this;
         }else {
             $this->theimageurl = $theimageurl;
@@ -88,11 +88,17 @@ class theimageMapping extends AbstractMapping
     {
         if(strlen($theimgetext)>250){
             // affichage de l'erreur
-            trigger_error("Le text de l'image ne doit pas dépasser 250 caractères", E_USER_NOTICE);
+            throw new Exception("Le text de l'image ne doit pas dépasser 250 caractères");
             return $this;
         }else {
             $this->theimagetext = $theimgetext;
             return $this;
         }
+    }
+
+    // Méthode obligatoire pour l'abstract
+    public function __toString(): string
+    {
+        return self::class;
     }
 }

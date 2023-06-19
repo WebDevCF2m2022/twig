@@ -7,6 +7,7 @@ use MyModels\Interface\ManagerInterface;
 use MyModels\Trait\userEntryProtectionTrait;
 use PDO;
 use Exception;
+use MyModels\Mapping\ThesectionMapping;
 
 class thesectionManager implements ManagerInterface
 {
@@ -21,18 +22,22 @@ class thesectionManager implements ManagerInterface
     public function SelectAllThesection(): array{
         $prepare = $this->connect->prepare("SELECT idthesection, thesectiontitle, thesectionslug FROM thesection  ORDER BY idthesection ASC;");
         $prepare->execute();
-        return $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        $prepare->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($prepare as $row){
+            $thesection[] = new ThesectionMapping($row);
+        }
+        return $thesection;
     }
 
 
     // ICI
 
-
+    use userEntryProtectionTrait;
 
     public function SelectOneThesectionBySlug(string $slug): array|string
     {
         // utilisation du trait de protection
-        $slug = userEntryProtectionTrait::userEntryProtection($slug);
+        $slug = $this->userEntryProtection($slug);
         $sql = "SELECT * FROM thesection WHERE thesectionslug=?";
         $prepare = $this->connect->prepare($sql);
         try{

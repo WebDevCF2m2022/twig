@@ -32,7 +32,7 @@ class thecommentManager implements ManagerInterface
             $prepare->bindParam(1, $id, \PDO::PARAM_INT);
             $prepare->execute();
             $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $result = $e->getMessage();
         }
         return $result;
