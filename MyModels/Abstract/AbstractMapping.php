@@ -2,7 +2,7 @@
 
 namespace MyModels\Abstract;
 
-class AbstractMapping
+abstract class AbstractMapping
 {
     // constructeur - Appelé lors de l'instanciation
     public function __construct(array $tab)
@@ -24,4 +24,6 @@ class AbstractMapping
             }
         }
     }
+    // méthode abstraite pour forcer les classes filles à implémenter la méthode sans pour autant utiliser d'interface
+    public abstract function __toString();
 }
