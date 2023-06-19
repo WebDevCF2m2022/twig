@@ -35,3 +35,27 @@ La documentation complète se trouve à cette adresse :
 
 https://twig.symfony.com/doc/3.x/intro.html
 
+Il est important de garder le composer.json pour pouvoir installer les dépendances du projet.
+
+On met le dossier `vendor` dans le `.gitignore` pour ne pas le mettre sur le dépôt.
+
+## Utilisation
+
+Pour utiliser `Twig` dans votre projet, il faut d'abord créer un dossier `view` à la racine du projet.
+
+Dans ce dossier, on va créer un fichier `base.html.twig` qui va contenir le squelette de notre site.
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</body>
+</html>
+```

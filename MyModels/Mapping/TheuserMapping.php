@@ -6,10 +6,11 @@ namespace MyModels\Mapping;
 // classe abstraite
 use MyModels\Abstract\AbstractMapping;
 use MyModels\Trait\userEntryProtectionTrait as protection;
+use Exception;
 
 // trait renommé en protection, on doit utiliser le 'use protection' dans la classe
 
-class theuserMapping extends AbstractMapping
+class TheuserMapping extends AbstractMapping
 {
     private int $idtheuser;
 
@@ -61,7 +62,7 @@ class theuserMapping extends AbstractMapping
     public function setTheuserlogin(string $theuserlogin) : TheuserMapping
     {
         if (strlen($theuserlogin) > 50) {
-            trigger_error("L'ID de l'utilisateur ne peut pas dépasser 50 caractères", E_USER_NOTICE);
+            throw new Exception("L'ID de l'utilisateur ne peut pas dépasser 50 caractères");
         }
         else {
             $theuserlogin       = protection::userEntryProtection($theuserlogin);
@@ -78,7 +79,7 @@ class theuserMapping extends AbstractMapping
     public function setTheuserpwd(string $theuserpwd) : TheuserMapping
     {
         if (strlen($theuserpwd) > 255) {
-            trigger_error("Le mot de passe est trop long ! ", E_USER_NOTICE);
+            throw new Exception("Le mot de passe est trop long ! ");
         }
         else {
             $this->theuserpwd = $theuserpwd;
@@ -97,7 +98,7 @@ class theuserMapping extends AbstractMapping
     {
 
         if ((strlen($theusermail) > 255) && (!filter_var(trim($theusermail), FILTER_VALIDATE_EMAIL))) {
-            trigger_error("L'adresse e-mail est trop longue  ou le format est invalide ! ", E_USER_NOTICE);
+            throw new Exception("L'adresse e-mail est trop longue  ou le format est invalide ! ");
         }
         else {
             $this->theusermail = $theusermail;
@@ -113,7 +114,7 @@ class theuserMapping extends AbstractMapping
     public function setTheuseruniqid(string $theuseruniqid) : TheuserMapping
     {
         if (strlen($theuseruniqid) > 255) {
-            trigger_error("La clef unique est trop longue ! ");
+            throw new Exception("La clef unique est trop longue ! ");
         }
         else {
             $this->theuseruniqid = $theuseruniqid;
@@ -134,7 +135,7 @@ class theuserMapping extends AbstractMapping
     public function setPermissionIdpermission(int $permission_idpermission) : TheuserMapping
     {
         if ($permission_idpermission < 1 || $permission_idpermission > 3) {
-            trigger_error("La permission introduite n'existe pas !", E_USER_NOTICE);
+            throw new Exception("La permission introduite n'existe pas !");
         }
         else {
             $this->permission_idpermission = $permission_idpermission;
@@ -145,7 +146,7 @@ class theuserMapping extends AbstractMapping
     public function setTheuseractivate(int $theuseractivate) : TheuserMapping
     {
         if (!($theuseractivate >= 0 && $theuseractivate < 3) || (!$theuseractivate)) {
-            trigger_error("Identifiant de l'état d'activité invalide !");
+            throw new Exception("Identifiant de l'état d'activité invalide !");
         }
         else {
             $this->theuseracivate = $theuseractivate;

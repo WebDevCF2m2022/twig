@@ -2,7 +2,8 @@
 namespace MyModels\Mapping;
 
 use MyModels\Abstract\AbstractMapping;
-class thecommentMapping extends AbstractMapping{
+use Exception;
+class ThecommentMapping extends AbstractMapping{
         private int $idthecomment;
         private int $theuser_idtheuser;
         private string $thecommenttext;
@@ -50,7 +51,7 @@ class thecommentMapping extends AbstractMapping{
     public function setThecommenttext(string $thecommenttext): thecommentMapping
     {
         if(strlen($thecommenttext)>850) {
-            trigger_error("Le texte du commentaire ne doit pas dépasser 45 caractères", E_USER_NOTICE);
+            throw new Exception("Le texte du commentaire ne doit pas dépasser 45 caractères", E_USER_NOTICE);
             return $this;
         }else{
                 $this->thecommenttext = $thecommenttext;
@@ -74,6 +75,11 @@ class thecommentMapping extends AbstractMapping{
     {
         $this->thecommentdate = $thecommentdate;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return self::class;
     }
 
 }

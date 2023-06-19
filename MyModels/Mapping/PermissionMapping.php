@@ -2,7 +2,8 @@
 
 namespace MyModels\Mapping;
 use MyModels\Abstract\AbstractMapping;
-class permissionMapping extends AbstractMapping
+use Exception;
+class PermissionMapping extends AbstractMapping
 {
     // Propriétés
     private int $idpermission;
@@ -39,7 +40,7 @@ class permissionMapping extends AbstractMapping
         // dépasse 45 caractères
         if(strlen($permissionname)>45){
             // affichage de l'erreur
-            trigger_error("Le nom de la permission ne doit pas dépasser 45 caractères", E_USER_NOTICE);
+            throw new Exception("Le nom de la permission ne doit pas dépasser 45 caractères");
             return $this;
         }else {
             $this->permissionname = $permissionname;
@@ -53,6 +54,10 @@ class permissionMapping extends AbstractMapping
         return $this;
     }
 
-
+    // Méthode obligatoire pour l'abstract
+    public function __toString(): string
+    {
+        return self::class;
+    }
 
 }

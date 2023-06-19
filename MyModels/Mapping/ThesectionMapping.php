@@ -3,7 +3,9 @@
 namespace MyModels\Mapping;
 
 use MyModels\Abstract\AbstractMapping;
-class thesectionMapping extends AbstractMapping
+use Exception;
+
+class ThesectionMapping extends AbstractMapping
 {
     // Propriétés
     private int $idthesection;
@@ -48,7 +50,7 @@ class thesectionMapping extends AbstractMapping
         // dépasse 60 caractères
         if(strlen($thesectiontitle)>60){
             // affichage de l'erreur
-            trigger_error("Le nom de la permission ne doit pas dépasser 60 caractères", E_USER_NOTICE);
+            throw new Exception("Le nom de la permission ne doit pas dépasser 60 caractères");
             return $this;
         }else {
             $this->thesectiontitle = $thesectiontitle;
@@ -61,7 +63,7 @@ class thesectionMapping extends AbstractMapping
         // dépasse 60 caractères
         if(strlen($thesectionslug)>60){
             // affichage de l'erreur
-            trigger_error("Le nom de la permission ne doit pas dépasser 60 caractères", E_USER_NOTICE);
+            throw new Exception("Le nom de la permission ne doit pas dépasser 60 caractères");
             return $this;
         }else {
             $this->thesectionslug = $thesectionslug;
@@ -74,12 +76,18 @@ class thesectionMapping extends AbstractMapping
         // dépasse 300 caractères
         if(strlen($thesectiondesc)>300){
             // affichage de l'erreur
-            trigger_error("Le nom de la permission ne doit pas dépasser 300 caractères", E_USER_NOTICE);
+            throw new Exception("Le nom de la permission ne doit pas dépasser 300 caractères");
             return $this;
         }else {
             $this->thesectiondesc = $thesectiondesc;
             return $this;
         }
+    }
+
+    // Méthode obligatoire pour l'abstract
+    public function __toString(): string
+    {
+        return self::class;
     }
 
 }

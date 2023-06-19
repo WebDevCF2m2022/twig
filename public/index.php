@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+# chemins vers Twig
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
+
 
 // dependencies
 require_once "../config.php";
@@ -10,6 +14,18 @@ spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     require '../' .$class . '.php';
 });
+
+// autoload from composer
+require_once "../vendor/autoload.php";
+
+// twig
+# chemin vers le dossier des templates
+$loader = new FilesystemLoader('../view');
+# instanciation de l'environnement Twig
+$twig = new Environment($loader, [
+    'cache' => false,
+    'debug' => true
+]);
 
 // db connection
 try {
@@ -27,13 +43,9 @@ try {
     exit;
 }
 
-$a = new \MyModels\Mapping\permissionMapping(['idpermission' => 1, 'permissionname' => 'test', 'permissionrole' => 5]);
+// router
 
-var_dump($a);
-
-$b = new \MyModels\Manager\permissionManager($pdo);
-
-var_dump($b->permissionSelectAll());
+include "../controller/publicController.php";
 
 // close connection (portabilité hors MySQL, mettre en commentaire en cas de connexion permanente)
 $pdo = null;
