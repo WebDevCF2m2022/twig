@@ -1,0 +1,16 @@
+<?php
+# Constantes de connexion à la DB Locale
+const DB_TYPE = "mysql";
+const DB_HOST = "localhost";
+const DB_NAME = "twig";
+const DB_LOGIN = "root";
+const DB_PWD = "";
+const DB_PORT = 3307;
+const DB_CHARSET = "utf8";
+// En production = true
+const PROD = false;
+
+// pour Verot download d'images
+const IMG_RESIZED = __DIR__ . '/pictures/resized';
+const IMG_RESIZED_CROP = __DIR__ . '/pictures/resizedcrop';
+const IMG_ORIGINAL = __DIR__ . '/pictures/original';
