@@ -23,14 +23,16 @@ class thesectionManager implements ManagerInterface
         $prepare = $this->connect->prepare("SELECT idthesection, thesectiontitle, thesectionslug FROM thesection  ORDER BY idthesection ASC;");
         try {
             $prepare->execute();
-            $prepare->fetchAll();
+
         }catch (Exception $e) {
             return $e->getMessage();
         }
-        foreach ($prepare as $row){
-            $thesection[] = new ThesectionMapping($row);
+        $sections =$prepare->fetchAll();
+        $sec=[];
+        foreach ($sections as $row){
+            $sec[] = new ThesectionMapping($row);
         }
-        return $thesection;
+        return $sec;
     }
 
 
