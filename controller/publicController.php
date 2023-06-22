@@ -6,6 +6,10 @@ use MyModels\Manager\thearticleManager;
 $thesectionManager = new thesectionManager($pdo);
 $thearticleManager = new thearticleManager($pdo);
 
+if(isset($_GET['articlesSlug'])){
+    echo $_GET['articlesSlug'];
+}
+
 try {
     $thesection = $thesectionManager->SelectAllThesection();
 } catch (Exception $e) {
