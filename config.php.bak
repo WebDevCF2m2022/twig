@@ -10,6 +10,8 @@ const DB_CHARSET = "utf8";
 // En production = true
 const PROD = false;
 
+const MY_URL = "http://twig/";
+
 // pour Verot download d'images
 const IMG_RESIZED = __DIR__ . '/pictures/resized';
 const IMG_RESIZED_CROP = __DIR__ . '/pictures/resizedcrop';
