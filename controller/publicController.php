@@ -22,5 +22,5 @@ try{
 echo $twig->render("public/public_homepage.html.twig", [
     // passage des sections et des articles à la vue
     "mesSections" => $thesection,
-    "mesarticles"  => $thearticle,
+    "mesArticles"  => $thearticle,
 ]);
