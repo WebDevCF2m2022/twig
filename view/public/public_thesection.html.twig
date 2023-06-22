@@ -5,4 +5,10 @@
 {% block categ %}
     {% include 'public/menu.html.twig' %}
 {% endblock %}
+{% block h1 %}
+Section : {{ maSection.thesectiontitle }}
+{% endblock %}
+{%  block leadtext %}
+{{ maSection.thesectiondesc }}
+{% endblock %}
 
