@@ -19,6 +19,8 @@ try {
 }
 
 if(isset($_GET['SlugSection'])){
+    // exercice charger les bonnes données en fonction de la page
+    // view/public/public_rubriques.html.twig
     echo $_GET['SlugSection'];
 }elseif(isset($_GET['SlugArticle'])){
     echo $_GET['SlugArticle'];
