@@ -26,7 +26,7 @@ if(isset($_GET['articlesSlug'])){
         "mesSections" => $thesection,
         "maSection" => $maSection,
         "mesArticles" => $mesArticlesSection,
-        "racine" => MyURL
+        "racine" => MY_URL
     ]);
 }else {
 
@@ -43,6 +43,6 @@ if(isset($_GET['articlesSlug'])){
         // passage des sections et des articles à la vue
         "mesSections" => $thesection,
         "mesArticles" => $thearticle,
-        "racine" => MyURL
+        "racine" => MY_URL
     ]);
 }
