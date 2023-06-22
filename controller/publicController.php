@@ -16,8 +16,11 @@ try {
 if(isset($_GET['articlesSlug'])){
     echo $_GET['articlesSlug'];
 }elseif(isset($_GET['sectionsSlug'])){
-    $mesArticlesSection = $thearticleManager->thearticleSelectOneBySlug($_GET['sectionsSlug']);
+
     $maSection = $thesectionManager->SelectOneThesectionBySlug($_GET['sectionsSlug']);
+    $idSection = $maSection['idthesection'];
+    $mesArticlesSection = $thearticleManager->thearticleSelectAllFromSection($idSection);
+
     echo $twig->render("public/public_thesection.html.twig", [
         // passage des sections et des articles à la vue
         "mesSections" => $thesection,
