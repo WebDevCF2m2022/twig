@@ -74,7 +74,7 @@ class ThesectionMapping extends AbstractMapping
     public function setthesectiondesc(string $thesectiondesc): thesectionMapping
     {
         // dépasse 300 caractères
-        if(strlen($thesectiondesc)>300){
+        if(strlen($thesectiondesc)>600){
             // affichage de l'erreur
             throw new Exception("Le nom de la permission ne doit pas dépasser 300 caractères");
             return $this;
