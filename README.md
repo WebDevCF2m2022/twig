@@ -115,4 +115,96 @@ echo $twig->render("public/public_homepage.html.twig", [
 
 ```
 
+### Utilisation de Twig
+
+#### Le système de blocs et d'héritage
+
+Dans notre fichier `base.html.twig`, on a créé des blocs `{% block %}{% endblock %}` qui vont nous permettre d'insérer du contenu dans notre squelette.
+
+On peut ensuite en hériter dans nos autres fichiers `Twig` avec `{% extends %}`. 
+
+**Attention**, on ne peut hériter que d'un seul fichier `Twig` à la fois, et les **balises html (texte en général) doivent être mises dans des blocs dès que l'on a un fichier parent**.
+
+On peut également hériter de plusieurs niveaux de fichiers `Twig` en utilisant `{% extends %}` dans un fichier `Twig` qui hérite déjà d'un autre fichier `Twig` :
+
+`public_homepage.html.twig` hérite de `template.html.twig` qui hérite de `base.html.twig` :
+
+```html
+{# public_homepage.html.twig #}
+{% extends "base.html.twig" %}
+
+{# Pour hériter du titre du parent, on peut utiliser {{ parent() }} #}
+{% block title %}{{ parent() }} Accueil{% endblock %}
+
+{% block body %}
+    {# on peut mettre du contenu ici #}
+
+        {# on peut aussi créer de blocs enfants dans le bloc body,
+        mais jamais en dehors d'un bloc parent ! #}
+        {% block section %}
+            <h1>Accueil</h1>
+            <p>Bienvenue sur mon site</p>
+        {% endblock %}
+    <h1>Accueil</h1>
+    <p>Bienvenue sur mon site</p>
+{% endblock %}
+```
+
+Si un bloc n'est pas défini dans le fichier `Twig` qui hérite, il prendra le contenu du bloc du fichier parent.
+
+Sinon, il l'écrasera. On peut néanmoins récupérer le contenu du bloc parent avec `{{ parent() }}`.
+
+#### Les variables
+
+Pour passer des variables à notre fichier `Twig`, on utilise un tableau associatif dans le `render()` de notre contrôleur :
+
+```php
+<?php
+// Path: controller\publicController.php
+
+# ...
+
+echo $twig->render("public/public_homepage.html.twig", [
+        // passage des sections et des articles à la vue
+        "mesSections" => $thesection,
+        "mesArticles" => $thearticle,
+        "racine" => MY_URL
+    ]);
+
+# ...
+
+```
+
+On peut ensuite les utiliser dans notre fichier `Twig` avec `{{ }}` :
+
+```html
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} Accueil{% endblock %}
+
+{% block body %}
+    <p>La racine de mon site est : {{ racine }}</p>
+{% endblock %}
+```
+
+#### Les boucles
+
+On peut utiliser des boucles dans nos fichiers `Twig` avec `{% for %}` :
+
+```html
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} Accueil{% endblock %}
+
+{% block body %}
+    <p>La racine de mon site est : {{ racine }}</p>
+    <ul>
+        {% for section in mesSections %}
+            <li>{{ section.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+```
+
+
 
