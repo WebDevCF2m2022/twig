@@ -1,5 +1,9 @@
 {# view/public/public_homepage.html.twig #}
 {% extends 'template.html.twig' %}
+{# le chemin part toujours de ../view, car on l'a
+appelmé comme ça lors de l'instanciation de Twig dans index.php
+    $loader = new FilesystemLoader('../view');
+#}
 
 {% block title %}{{ parent() }} | Homepage{% endblock %}
 {% block categ %}
