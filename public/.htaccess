@@ -1,8 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{REQUEST_URI} ^/article/([a-zA-Z0-9_-]+)$
-RewriteRule ^(.*)$ /?SlugArticle=%1 [L]
 
-RewriteCond %{REQUEST_URI} ^/section/([a-zA-Z0-9_-]+)$
-RewriteRule ^(.*)$ /?SlugSection=%1 [L]
+RewriteCond %{REQUEST_URI} ^/articles/([a-zA-Z0-9_-]+)$
+RewriteRule ^(.*)$ /?articlesSlug=%1 [L]
+
+RewriteCond %{REQUEST_URI} ^/sections/([a-zA-Z0-9_-]+)$
+RewriteRule ^(.*)$ /?sectionsSlug=%1 [L]

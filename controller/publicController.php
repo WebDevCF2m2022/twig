@@ -11,6 +11,7 @@ $thesectionManager = new thesectionManager($pdo);
 # instanciation du manager de thearticle
 $thearticleManager = new thearticleManager($pdo);
 
+// menu pour toute la partie publique
 try {
     # récupération de toutes les sections pour le menu
     $thesection = $thesectionManager->SelectAllThesection();
@@ -18,26 +19,37 @@ try {
     $error = $e->getMessage();
 }
 
-if(isset($_GET['SlugSection'])){
-    // exercice charger les bonnes données en fonction de la page
-    // view/public/public_rubriques.html.twig
-    echo $_GET['SlugSection'];
-}elseif(isset($_GET['SlugArticle'])){
-    echo $_GET['SlugArticle'];
+
+if(isset($_GET['articlesSlug'])){
+    echo $_GET['articlesSlug'];
+}elseif(isset($_GET['sectionsSlug'])){
+
+    $maSection = $thesectionManager->SelectOneThesectionBySlug($_GET['sectionsSlug']);
+    $idSection = $maSection['idthesection'];
+    $mesArticlesSection = $thearticleManager->thearticleSelectAllFromSection($idSection);
+
+    echo $twig->render("public/public_thesection.html.twig", [
+        // passage des sections et des articles à la vue
+        "mesSections" => $thesection,
+        "maSection" => $maSection,
+        "mesArticles" => $mesArticlesSection,
+        "racine" => MY_URL
+    ]);
 }else {
 
+
     try {
-        # récupération de tous les articles pour la page d'accueil
         $thearticle = $thearticleManager->thearticleSelectAll();
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
 
-// affichage de la vue qui est de l'environnement twig avec la méthode render et le chemin (il va chercher dans le dossier view)
+
+// Path: controller\publicController.php
     echo $twig->render("public/public_homepage.html.twig", [
-        // transmission de données à la vue
-        "mesSections" => $thesection, // pour le menu
-        "mesArticles" => $thearticle, // articles pour la page d'accueil
-        "base_url" => MY_URL, // pour les liens
+        // passage des sections et des articles à la vue
+        "mesSections" => $thesection,
+        "mesArticles" => $thearticle,
+        "racine" => MY_URL
     ]);
 }

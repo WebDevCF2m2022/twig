@@ -1,5 +1,6 @@
 <?php
-# Ouverture de session
+// public/index.php
+
 session_start();
 
 # chemins vers Twig avec use (ne charge pas sans require ou include)
