@@ -96,13 +96,23 @@ $twig = new Environment($loader, [
 
 ``` 
 
-
-
-
-Dans ce fichier, on va créer un `require` pour appeler `Twig` et on va créer un `loader` pour indiquer à `Twig` où se trouve le dossier `view` qui contient nos templates.
+Puis dans un contrôleur comme `controller/publicController.php`, avec un exemple de page d'accueil :
 
 ```php
 <?php
+// Path: controller\publicController.php
 
+# ...
+
+echo $twig->render("public/public_homepage.html.twig", [
+        // passage des sections et des articles à la vue
+        "mesSections" => $thesection,
+        "mesArticles" => $thearticle,
+        "racine" => MY_URL
+    ]);
+
+# ...
+
+```
 
 

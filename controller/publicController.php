@@ -45,7 +45,6 @@ if(isset($_GET['articlesSlug'])){
     }
 
 
-// Path: controller\publicController.php
     echo $twig->render("public/public_homepage.html.twig", [
         // passage des sections et des articles à la vue
         "mesSections" => $thesection,
