@@ -21,7 +21,7 @@
 
 ## Installation
 
-Installez d'abord `Composer` que vous pouvez trouver à cette adresse :
+Installez d'abord `Composer` qu'on peut trouver à cette adresse :
 
 https://getcomposer.org/download/
 
@@ -41,7 +41,7 @@ On met le dossier `vendor` dans le `.gitignore` pour ne pas le mettre sur le dé
 
 ## Utilisation
 
-Pour utiliser `Twig` dans votre projet, il faut d'abord créer un dossier `view` à la racine du projet.
+Pour utiliser `Twig` dans notre projet, il faut d'abord créer un dossier `view` à la racine du projet (ou un autre dossier de votre choix).
 
 Dans ce dossier, on va créer un fichier `base.html.twig` qui va contenir le squelette de notre site.
 
@@ -59,3 +59,43 @@ Dans ce dossier, on va créer un fichier `base.html.twig` qui va contenir le squ
 </body>
 </html>
 ```
+
+### Appel de Twig
+
+Pour utiliser `Twig` dans notre projet, on va le charger dans notre contrôleur frontal : `public/index.php` , grâce à l'autoload de `Composer`.
+
+On va également utiliser les `namespaces` pour pouvoir appeler `Twig` dans notre projet avec les `use`.
+
+```php
+<?php
+// public/index.php
+
+# ...
+
+# chemins vers Twig
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
+
+// autoload from composer
+require_once "../vendor/autoload.php";
+
+// twig
+# chemin vers le dossier des templates
+$loader = new FilesystemLoader('../view');
+# instanciation de l'environnement Twig
+$twig = new Environment($loader, [
+    'cache' => false,
+    'debug' => true
+]); // false pour le cache et true pour le debug
+``` 
+
+
+
+
+Dans ce fichier, on va créer un `require` pour appeler `Twig` et on va créer un `loader` pour indiquer à `Twig` où se trouve le dossier `view` qui contient nos templates.
+
+```php
+<?php
+
+
+

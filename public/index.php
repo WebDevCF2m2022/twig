@@ -1,4 +1,5 @@
 <?php
+// public/index.php
 session_start();
 
 # chemins vers Twig
