@@ -22,7 +22,7 @@ Section : {{ maSection.thesectiontitle }}
     {% else %}
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="fw-bolder">{{  }}Articles dans la section {{ maSection.thesectiontitle }}</h2>
+                <h2 class="fw-bolder">{{ mesArticles|length }}{% if mesArticles|length == 1 %} article{% else %} articles{% endif %} dans la section {{ maSection.thesectiontitle }}</h2>
             </div>
             <hr>
         </div>
