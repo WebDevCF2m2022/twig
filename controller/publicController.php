@@ -19,9 +19,11 @@ try {
     $error = $e->getMessage();
 }
 
-
+# Nous sommes sur un article
 if(isset($_GET['articlesSlug'])){
     echo $_GET['articlesSlug'];
+
+# Nous sommes sur une section
 }elseif(isset($_GET['sectionsSlug'])){
 
     $maSection = $thesectionManager->SelectOneThesectionBySlug($_GET['sectionsSlug']);
@@ -35,6 +37,8 @@ if(isset($_GET['articlesSlug'])){
         "mesArticles" => $mesArticlesSection,
         "racine" => MY_URL
     ]);
+
+# Nous sommes sur la page d'accueil
 }else {
 
 
