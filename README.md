@@ -76,8 +76,12 @@ On va également utiliser les `namespaces` pour pouvoir appeler `Twig` dans notr
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
+# ...
+
 // autoload from composer
 require_once "../vendor/autoload.php";
+
+# ...
 
 // twig
 # chemin vers le dossier des templates
@@ -87,6 +91,9 @@ $twig = new Environment($loader, [
     'cache' => false,
     'debug' => true
 ]); // false pour le cache et true pour le debug
+
+# ...
+
 ``` 
 
 
