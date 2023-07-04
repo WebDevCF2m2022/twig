@@ -274,3 +274,7 @@ composer require twig/string-extra
 ```html
 {{ item.thearticleresume|u.truncate(120, '...', false) }}   
 ```
+
+Les types de filtres :
+
+https://twig.symfony.com/doc/3.x/filters/index.html
