@@ -43,7 +43,14 @@ if(isset($_GET['articlesSlug'])){
         "mesArticles" => $mesArticlesSection,
         "racine" => MY_URL
     ]);
-
+# Nous voulons nous connecter
+}elseif(isset($_GET['connect'])){
+    // nous sommes ici, préparation de la vue
+    echo $twig->render("public/public_connect.html.twig", [
+        // passage des sections et des articles à la vue
+        "mesSections" => $thesection,
+        "racine" => MY_URL
+    ]);
 # Nous sommes sur la page d'accueil
 }else {
 

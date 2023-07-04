@@ -1,0 +1,32 @@
+{# view/public/public_connect.html.twig #}
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ parent() }} |  Connexion {% endblock %}
+{% block categ %}
+    {% include 'public/menu.html.twig' %}
+{% endblock %}
+{% block h1 %}
+Connexion
+{% endblock %}
+{%  block leadtext %}
+txt
+{% endblock %}
+{% block articles %}
+    <div class="row">
+        <form action="" method="post" name="connect">
+            <div class="form-group">
+                <label for="theuserlogin">Login</label>
+                <input type="text" name="theuserlogin" required class="form-control" id="email" placeholder="Login">
+            </div>
+            <div class="form-group">
+                <label for="mdp">Mot de passe</label>
+                <input type="password" name="theuserpwd" required class="form-control" id="mdp" placeholder="Mot de passe">
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+        <hr>
+    </div>
+
+
+{% endblock %}
+
