@@ -4,11 +4,12 @@ namespace MyModels\Manager;
 
 
 use MyModels\Interface\ManagerInterface;
+use MyModels\Interface\SecurityInterface;
 use MyModels\Mapping\theuserMapping;
 use PDO;
 use Exception;
 
-class theuserManager implements ManagerInterface
+class theuserManager implements ManagerInterface, SecurityInterface
 {
     private PDO $connect;
 
@@ -196,5 +197,20 @@ class theuserManager implements ManagerInterface
             $result = $e->getMessage();
         }
         return $result;
+    }
+
+    function checkSecurity($role)
+    {
+        // TODO: Implement checkSecurity() method.
+    }
+
+    function verifyPassword($password, $hash): bool
+    {
+        // TODO: Implement verifyPassword() method.
+    }
+
+    function cryptPassword($password): string
+    {
+        // TODO: Implement cryptPassword() method.
     }
 }
