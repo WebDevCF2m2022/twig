@@ -261,3 +261,16 @@ Vous voyez dans ce code quelques fonctions Twig supplémentaires :
 - `nl2br()` : permet de remplacer les retours à la ligne par des `<br>`.
 - `date()` : permet de formater une date. Ici, on affiche le jour, le mois, l'année et l'heure.
 
+### Pour utiliser les filtres
+
+Les filtres permettent de modifier une variable dans un fichier `Twig`.
+
+Pour ne pas couper les mots au milieur des phrases :
+
+```bash
+composer require twig/string-extra
+````
+
+```html
+{{ item.thearticleresume|u.truncate(120, '...', false) }}   
+```

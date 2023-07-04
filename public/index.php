@@ -6,7 +6,8 @@ session_start();
 # chemins vers Twig avec use (ne charge pas sans require ou include)
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
-use \Twig\Extension\DebugExtension;
+use Twig\Extension\DebugExtension;
+use Twig\Extra\String\StringExtension;
 
 
 // dependencies
@@ -31,6 +32,8 @@ $twig = new Environment($loader, [
 ]);
 # activation du debug (pour les dump par exemple)
 $twig->addExtension(new DebugExtension());
+# activation de l'extension String : après installation de twig-extensions via composer : https://packagist.org/packages/twig/string-extra
+$twig->addExtension(new StringExtension());
 
 // db connection
 try {
