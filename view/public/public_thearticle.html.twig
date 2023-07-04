@@ -23,7 +23,7 @@ Article - {{ monArticle.thearticletitle }}
             {% set sectionslug = monArticle.thesectionslug|split('|||') %}
             <p>
             {% for key, section in sectionTitle %}
-                <a href="./sections/{{ sectionslug[key] }}" class="badge bg-secondary text-decoration-none link-light">{{ section }}</a>
+                <a href="../sections/{{ sectionslug[key] }}" class="badge bg-secondary text-decoration-none link-light">{{ section }}</a>
             {% endfor %}
             </p>
             <hr>
