@@ -205,6 +205,59 @@ On peut utiliser des boucles dans nos fichiers `Twig` avec `{% for %}` :
     </ul>
 {% endblock %}
 ```
+### Pour utiliser le débogage
+
+vous devez activer le débogage dans l'environnement Twig :
+
+```php
+
+# chemin vers le dossier des templates (que l'on a choisit)
+$loader = new FilesystemLoader('../view');
+# instanciation de l'environnement Twig
+$twig = new Environment($loader, [
+    'cache' => false,
+    'debug' => true, // activation du debug
+]);
+# activation complète du debug (pour les dump par exemple)
+$twig->addExtension(new DebugExtension());
+
+```
+
+On peut maintenant utiliser le {{ dump(variable) }} dans nos vues pour voir si sa valeur est correcte.
+
+Par exemple dans `view/public/public_thearticle.html.twig` :
+
+```html
+{% block articles %}
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="fw-bolder">{{ monArticle.thearticletitle }}</h2>
+        <h3>Par {{ monArticle.theuserlogin }} le {{ monArticle.theuserdate|date("d/m/Y \à H") }}h</h3>
+        <hr>
+        {{ dump(monArticle) }}
+        {% set sectionTitle = monArticle.thesectiontitle|split('|||') %}
+        {% set sectionslug = monArticle.thesectionslug|split('|||') %}
+        {% set sectionslug = monArticle.thesectionslug|split('|||') %}
+        <p>
+            {% for key, section in sectionTitle %}
+            <a href="./sections/{{ sectionslug[key] }}" class="badge bg-secondary text-decoration-none link-light">{{ section }}</a>
+            {% endfor %}
+        </p>
+        <hr>
+        <p>{{ monArticle.thearticletext|nl2br }}</p>
+    </div>
+    <hr>
+</div>
 
 
+{% endblock %}
+```
+On pourra simplement le commenter par la suite.
+
+Vous voyez dans ce code quelques fonctions Twig supplémentaires :
+
+- `set` : permet de créer une variable dans un fichier `Twig`. Ici, on crée deux variables `sectionTitle` et `sectionslug` qui sont des tableaux.
+- `split()` : permet de séparer une chaîne de caractères en un tableau, en utilisant un séparateur (ici `|||`).
+- `nl2br()` : permet de remplacer les retours à la ligne par des `<br>`.
+- `date()` : permet de formater une date. Ici, on affiche le jour, le mois, l'année et l'heure.
 

@@ -6,6 +6,7 @@ session_start();
 # chemins vers Twig avec use (ne charge pas sans require ou include)
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
+use \Twig\Extension\DebugExtension;
 
 
 // dependencies
@@ -28,6 +29,8 @@ $twig = new Environment($loader, [
     'cache' => false,
     'debug' => true
 ]);
+# activation du debug (pour les dump par exemple)
+$twig->addExtension(new DebugExtension());
 
 // db connection
 try {
