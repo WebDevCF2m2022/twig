@@ -21,8 +21,14 @@ try {
 
 # Nous sommes sur un article
 if(isset($_GET['articlesSlug'])){
-    echo $_GET['articlesSlug'];
+        $monArticle = $thearticleManager->thearticleSelectOneBySlug($_GET['articlesSlug']);
 
+        echo $twig->render("public/public_thearticle.html.twig", [
+            // passage des sections et des articles à la vue
+            "mesSections" => $thesection,
+            "monArticle" => $monArticle,
+            "racine" => MY_URL
+        ]);
 # Nous sommes sur une section
 }elseif(isset($_GET['sectionsSlug'])){
 
