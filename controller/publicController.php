@@ -6,10 +6,15 @@ use MyModels\Manager\thesectionManager;
 # chemin vers le manager de thearticle
 use MyModels\Manager\thearticleManager;
 
+use MyModels\Manager\theuserManager;
+
 # instanciation du manager de thesection
 $thesectionManager = new thesectionManager($pdo);
 # instanciation du manager de thearticle
 $thearticleManager = new thearticleManager($pdo);
+
+$theuserManager = new theuserManager($pdo);
+
 
 // menu pour toute la partie publique
 try {
@@ -52,7 +57,7 @@ if(isset($_GET['articlesSlug'])){
         "racine" => MY_URL
     ]);
 # Nous sommes sur la page d'accueil
-}else {
+} else {
 
 
     try {
@@ -69,3 +74,13 @@ if(isset($_GET['articlesSlug'])){
         "racine" => MY_URL
     ]);
 }
+
+if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
+    
+    $connect = $theuserManager->userLogin($_POST['theuserlogin'], $_POST['theuserpwd']);
+    if($connect){
+        header("location : ./ ");
+    }else{
+        echo "c'est cassé";
+    }
+} 

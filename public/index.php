@@ -53,6 +53,8 @@ try {
     exit;
 }
 
+echo password_hash("1234", PASSWORD_DEFAULT);
+
 // router
 // contrôleur public
 include "../controller/publicController.php";
