@@ -1,10 +1,12 @@
 {# view/public/public_homepage.html.twig #}
 {% extends 'template.html.twig' %}
+{# le chemin part toujours de ../view, car on l'a
+appelmé comme ça lors de l'instanciation de Twig dans index.php
+    $loader = new FilesystemLoader('../view');
+#}
 
 {% block title %}{{ parent() }} | Homepage{% endblock %}
 {% block categ %}
-    {% for item in mesSections %}
-    <li class="nav-item"><a class="nav-link" href="?">{{ item.thesectiontitle }}</a></li>
-    {% endfor %}
+    {% include 'public/menu.html.twig' %}
 {% endblock %}
 

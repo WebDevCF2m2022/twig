@@ -7,8 +7,13 @@ const DB_LOGIN = "root";
 const DB_PWD = "";
 const DB_PORT = 3307;
 const DB_CHARSET = "utf8";
+
+const MY_URL = "http://twig:8080/";
+
 // En production = true
 const PROD = false;
+
+const MY_URL = "http://twig/";
 
 // pour Verot download d'images
 const IMG_RESIZED = __DIR__ . '/pictures/resized';

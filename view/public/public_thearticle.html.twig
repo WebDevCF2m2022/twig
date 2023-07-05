@@ -1,0 +1,37 @@
+{# view/public/public_thearticle.html.twig #}
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ parent() }} |  {{ monArticle.thearticletitle}} {% endblock %}
+{% block categ %}
+    {% include 'public/menu.html.twig' %}
+{% endblock %}
+{% block h1 %}
+Article - {{ monArticle.thearticletitle }}
+{% endblock %}
+{%  block leadtext %}
+{{ monArticle.thearticleresume }}
+{% endblock %}
+{% block articles %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="fw-bolder">{{ monArticle.thearticletitle }}</h2>
+            <h3>Par {{ monArticle.theuserlogin }} le {{ monArticle.theuserdate|date("d/m/Y \à H") }}h</h3>
+            <hr>
+            {# dump(monArticle) #}
+            {% set sectionTitle = monArticle.thesectiontitle|split('|||') %}
+            {% set sectionslug = monArticle.thesectionslug|split('|||') %}
+            {% set sectionslug = monArticle.thesectionslug|split('|||') %}
+            <p>
+            {% for key, section in sectionTitle %}
+                <a href="../sections/{{ sectionslug[key] }}" class="badge bg-secondary text-decoration-none link-light">{{ section }}</a>
+            {% endfor %}
+            </p>
+            <hr>
+            <p>{{ monArticle.thearticletext|nl2br }}</p>
+        </div>
+        <hr>
+    </div>
+
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{# view/public/public_thesection.html.twig #}
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ parent() }} | Section : {% endblock %}
+{% block categ %}
+    {% include 'public/menu.html.twig' %}
+{% endblock %}
+{% block h1 %}
+Section : {{ maSection.thesectiontitle }}
+{% endblock %}
+{%  block leadtext %}
+{{ maSection.thesectiondesc }}
+{% endblock %}
+{% block articles %}
+    {% if mesArticles is empty %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="fw-bolder">Pas encore d'articles dans la section {{ maSection.thesectiontitle }}</h2>
+            </div>
+            <hr>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="fw-bolder">{{ mesArticles|length }}{% if mesArticles|length == 1 %} article{% else %} articles{% endif %} dans la section {{ maSection.thesectiontitle }}</h2>
+            </div>
+            <hr>
+        </div>
+    {% endif %}
+    {% for item in mesArticles %}
+        <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+            <h2 class="h4 fw-bolder">{{ item.thearticletitle }}</h2>
+            <p>{{ item.thearticleresume|u.truncate(120, '...', false) }}</p>
+            <a class="text-decoration-none" href="/articles/{{ item.thearticleslug }}">
+                Lire la suite
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}
+
