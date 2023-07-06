@@ -25,6 +25,26 @@ try {
     $error = $e->getMessage();
 }
 
+if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
+
+    $login = new TheuserMapping([
+        "theuserlogin" => $_POST['theuserlogin'],
+        "theuserpwd" => $_POST['theuserpwd'],
+    ]);
+    
+    try{
+        $connect = $theuserManager->theuserConnectByLoginAndPwd($login);
+    }catch(Exception $e){
+        $error = $e->getMessage();
+    }
+
+    if($connect){
+        header("location: ./");
+    }else{
+        echo "c'est cassé";
+    }
+}
+
 # Nous sommes sur un article
 if(isset($_GET['articlesSlug'])){
         $monArticle = $thearticleManager->thearticleSelectOneBySlug($_GET['articlesSlug']);
@@ -76,17 +96,3 @@ if(isset($_GET['articlesSlug'])){
     ]);
 }
 
-if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
-
-    $login = new TheuserMapping([
-        "theuserlogin" => $_POST['theuserlogin'],
-        "theuserpwd" => $_POST['theuserpwd'],
-    ]);
-    
-    $connect = $theuserManager->theuserConnectByLoginAndPwd($login);
-    if($connect){
-        echo "ça marche";
-    }else{
-        echo "c'est cassé";
-    }
-}
