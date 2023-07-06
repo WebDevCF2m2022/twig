@@ -88,9 +88,9 @@ class theuserManager implements ManagerInterface, SecurityInterface
         return $result && $this->userLogin($result, $user->getTheuserpwd());
     }
 
-    public function userLogin($userInfo, $pwd) : bool
+    private function userLogin($userInfo, $pwd) : bool
     {
-        if ($userInfo["theuseractivate"] === "1" && password_verify($pwd, $userInfo["theuserpwd"])) {
+        if ($userInfo["theuseractivate"] == "1" && password_verify($pwd, $userInfo["theuserpwd"])) {
             $_SESSION["idSession"]      = session_id();
             $_SESSION["idUser"]         = $userInfo["idtheuser"];
             $_SESSION["userLogin"]      = $userInfo["theuserlogin"];

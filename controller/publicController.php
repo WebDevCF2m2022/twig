@@ -7,6 +7,7 @@ use MyModels\Manager\thesectionManager;
 use MyModels\Manager\thearticleManager;
 
 use MyModels\Manager\theuserManager;
+use MyModels\Mapping\TheuserMapping;
 
 # instanciation du manager de thesection
 $thesectionManager = new thesectionManager($pdo);
@@ -76,11 +77,16 @@ if(isset($_GET['articlesSlug'])){
 }
 
 if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
+
+    $login = new TheuserMapping([
+        "theuserlogin" => $_POST['theuserlogin'],
+        "theuserpwd" => $_POST['theuserpwd'],
+    ]);
     
-    $connect = $theuserManager->userLogin($_POST['theuserlogin'], $_POST['theuserpwd']);
+    $connect = $theuserManager->theuserConnectByLoginAndPwd($login);
     if($connect){
-        header("location : ./ ");
+        echo "ça marche";
     }else{
         echo "c'est cassé";
     }
-} 
+}
