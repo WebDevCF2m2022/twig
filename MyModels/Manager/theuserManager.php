@@ -90,7 +90,7 @@ class theuserManager implements ManagerInterface, SecurityInterface
 
     private function userLogin($userInfo, $pwd) : bool
     {
-        if ($userInfo["theuseractivate"] === "1" && password_verify($pwd, $userInfo["theuserpwd"])) {
+        if ($userInfo["theuseractivate"] == "1" && password_verify($pwd, $userInfo["theuserpwd"])) {
             $_SESSION["idSession"]      = session_id();
             $_SESSION["idUser"]         = $userInfo["idtheuser"];
             $_SESSION["userLogin"]      = $userInfo["theuserlogin"];
@@ -176,7 +176,7 @@ class theuserManager implements ManagerInterface, SecurityInterface
             $prepare->bindValue(2, $user->getTheuserpwd());
             $prepare->bindValue(3, $user->getTheusermail());
             $prepare->bindValue(4, $user->getTheuseruniqid());
-            $prepare->bindValue(5, $user->getTheuseracivate());
+            $prepare->bindValue(5, $user->getTheuseractivate());
             $prepare->bindValue(6, $user->getPermissionIdpermission());
             $result = $prepare->execute();
         } catch (Exception $e) {
@@ -206,11 +206,11 @@ class theuserManager implements ManagerInterface, SecurityInterface
 
     function verifyPassword($password, $hash): bool
     {
-        // TODO: Implement verifyPassword() method.
+        return true;
     }
 
     function cryptPassword($password): string
     {
-        // TODO: Implement cryptPassword() method.
+        return "string";
     }
 }
