@@ -13,7 +13,6 @@ const MY_URL = "http://twig:8080/";
 // En production = true
 const PROD = false;
 
-const MY_URL = "http://twig/";
 
 // pour Verot download d'images
 const IMG_RESIZED = __DIR__ . '/pictures/resized';
