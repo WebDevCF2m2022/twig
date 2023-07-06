@@ -41,7 +41,8 @@ if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
     if($connect){
         header("location: ./");
     }else{
-        echo "c'est cassé";
+        $erreur = "Une erreur est survénue, vous n'êtes connecté ! ";
+        var_dump($erreur);
     }
 }
 
