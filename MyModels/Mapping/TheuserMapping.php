@@ -155,6 +155,6 @@ class TheuserMapping extends AbstractMapping
     }
 
     public function __toString(){
-        return true;
+        return $this->theuserlogin;
     }
 }
