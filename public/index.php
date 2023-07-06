@@ -53,9 +53,15 @@ try {
     exit;
 }
 
+
 // router
 // contrôleur public
-include "../controller/publicController.php";
+if(isset($_SESSION['idSession'])){
+    include "../controller/privateController.php";
+}else{
+    include "../controller/publicController.php";
+}
+
 
 // close connection (portabilité hors MySQL, mettre en commentaire en cas de connexion permanente)
 $pdo = null;

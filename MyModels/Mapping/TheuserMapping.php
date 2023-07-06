@@ -5,7 +5,7 @@ namespace MyModels\Mapping;
 // utilisation de classes externes
 // classe abstraite
 use MyModels\Abstract\AbstractMapping;
-use MyModels\Trait\userEntryProtectionTrait as protection;
+use MyModels\Trait\userEntryProtectionTrait;
 use Exception;
 
 // trait renommé en protection, on doit utiliser le 'use protection' dans la classe
@@ -32,7 +32,7 @@ class TheuserMapping extends AbstractMapping
     }
 
     // importation de la méthode du trait
-    use protection;
+    use userEntryProtectionTrait;
 
     // Getters
 
@@ -65,7 +65,7 @@ class TheuserMapping extends AbstractMapping
             throw new Exception("L'ID de l'utilisateur ne peut pas dépasser 50 caractères");
         }
         else {
-            $theuserlogin       = protection::userEntryProtection($theuserlogin);
+            
             $this->theuserlogin = $theuserlogin;
         }
         return $this;
@@ -154,8 +154,8 @@ class TheuserMapping extends AbstractMapping
         return $this;
     }
 
-    public
-    function __toString()
+
+    public function __toString()
     {
         return $this->theuserlogin;
     }
