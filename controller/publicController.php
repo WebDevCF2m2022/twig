@@ -5,7 +5,7 @@
 use MyModels\Manager\thesectionManager;
 # chemin vers le manager de thearticle
 use MyModels\Manager\thearticleManager;
-
+use MyModels\Manager\thesearchManager;
 use MyModels\Manager\theuserManager;
 use MyModels\Mapping\TheuserMapping;
 
@@ -13,7 +13,7 @@ use MyModels\Mapping\TheuserMapping;
 $thesectionManager = new thesectionManager($pdo);
 # instanciation du manager de thearticle
 $thearticleManager = new thearticleManager($pdo);
-
+$thesearchManager = new thesearchManager($pdo);
 $theuserManager = new theuserManager($pdo);
 
 
@@ -78,6 +78,20 @@ if(isset($_GET['articlesSlug'])){
         "racine" => MY_URL
     ]);
 # Nous sommes sur la page d'accueil
+} elseif(isset($_GET['q'])) { // suppose que 'q' est le paramètre de recherche dans l'URL
+
+    $query = $_GET['q'];
+
+    $articles = $thesearchManager->thesearchSelectAllBySearch($query);
+    $users = $thesearchManager->thesearchSelectAllBySearchUser($query);
+
+    echo $twig->render("public/public_search.html.twig", [
+        // passage des sections, des articles et des utilisateurs à la vue
+        "mesSections" => $thesection,
+        "mesArticles" => $articles,
+        "mesUsers" => $users,
+        "racine" => MY_URL
+    ]);
 } else {
 
 
