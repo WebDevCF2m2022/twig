@@ -15,6 +15,9 @@ txt
     <div class="row">
         <form action="" method="post" name="connect">
             <div class="form-group">
+            {% if erreur is defined %}
+            {{ erreur }}
+            {% endif %}
                 <label for="theuserlogin">Login</label>
                 <input type="text" name="theuserlogin" required class="form-control" id="email" placeholder="Login">
             </div>

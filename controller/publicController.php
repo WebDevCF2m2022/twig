@@ -25,6 +25,7 @@ try {
     $error = $e->getMessage();
 }
 
+$erreur = "";
 if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
 
     $login = new TheuserMapping([
@@ -35,14 +36,13 @@ if(isset($_POST['theuserlogin'], $_POST['theuserpwd'])){
     try{
         $connect = $theuserManager->theuserConnectByLoginAndPwd($login);
     }catch(Exception $e){
-        $error = $e->getMessage();
+        $erreur = $e->getMessage();
     }
 
     if($connect){
         header("location: ./");
     }else{
-        $erreur = "Une erreur est survénue, vous n'êtes connecté ! ";
-        var_dump($erreur);
+        $erreur = "Une erreur est survénue, vous n'êtes pas connecté ! ";
     }
 }
 
@@ -76,6 +76,7 @@ if(isset($_GET['articlesSlug'])){
     echo $twig->render("public/public_connect.html.twig", [
         // passage des sections et des articles à la vue
         "mesSections" => $thesection,
+        "erreur" => $erreur,
         "racine" => MY_URL
     ]);
 # Nous sommes sur la page d'accueil
