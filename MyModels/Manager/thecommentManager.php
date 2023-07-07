@@ -29,9 +29,9 @@ class thecommentManager implements ManagerInterface
                     ORDER BY c.thecommentdate DESC;";
         $prepare = $this->connect->prepare($sql);
         try {
-            $prepare->bindParam(1, $id, \PDO::PARAM_INT);
+            $prepare->bindParam(1, $id, PDO::PARAM_INT);
             $prepare->execute();
-            $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+            $result = $prepare->fetchAll();
         } catch (Exception $e) {
             $result = $e->getMessage();
         }

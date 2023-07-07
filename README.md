@@ -278,3 +278,22 @@ composer require twig/string-extra
 Les types de filtres :
 
 https://twig.symfony.com/doc/3.x/filters/index.html
+
+### Attentions
+
+Pour utiliser les propriétés d'**un objet** dans un fichier `Twig`, il faut utiliser `.` :
+
+```html
+{{ monArticle.thearticletitle }}
+```
+
+Il faut qu'un getter existe si la propriété est privée ou protégée, au même format que notre hydratation (avec get à la place de set) :
+
+```php
+public function getTheArticleTitle()
+{
+    return $this->thearticletitle;
+}
+```
+
+Sinon on ne récupère rien!

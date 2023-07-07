@@ -49,7 +49,6 @@ class ThearticleMapping extends AbstractMapping
         }
     }
 
-    // Getters
 
     private function summarize(int $offset = 0, int $substr = 250) : void
     {
@@ -71,10 +70,6 @@ class ThearticleMapping extends AbstractMapping
         }
     }
 
-    public function getTheuserIdtheuser() : int
-    {
-        return $this->theuser_idtheuser;
-    }
 
     public function setTheuserIdtheuser(int $theuser_idtheuser) : thearticleMapping
     {
@@ -82,10 +77,6 @@ class ThearticleMapping extends AbstractMapping
         return $this;
     }
 
-    public function getIdthearticle() : int
-    {
-        return $this->idthearticle;
-    }
 
     public function setIdthearticle(int $idthearticle) : thearticleMapping
     {
@@ -93,39 +84,12 @@ class ThearticleMapping extends AbstractMapping
         return $this;
     }
 
-    public function getArticleTitle() : string
-    {
-        return $this->thearticletitle;
-    }
-
-    // Setters
-
-    public function getArticleSlug() : string
-    {
-        return $this->thearticleslug;
-    }
-
-    public function getArticleResume() : string
-    {
-        return $this->thearticleresume;
-    }
 
 
-    public function getArticleText() : string
-    {
-        return $this->thearticletext;
-    }
-
-    public function getArticleDate() : string
-    {
-        return $this->thearticledate;
-    }
 
 
-    public function getArticleActivate() : string
-    {
-        return $this->thearticleactivate;
-    }
+
+
 
     public function setThearticletitle(string $thearticletitle) : thearticleMapping
     {
@@ -161,6 +125,80 @@ class ThearticleMapping extends AbstractMapping
 
     public function __toString() : string
     {
-        return $this->getArticleTitle();
+        $this->getThearticletitle();
     }
+
+    /**
+     * @return int
+     */
+    public
+    function getIdthearticle(): int
+    {
+        return $this->idthearticle;
+    }
+
+    /**
+     * @return string
+     */
+    public
+    function getThearticletitle(): string
+    {
+        return $this->thearticletitle;
+    }
+
+    /**
+     * @return string
+     */
+    public
+    function getThearticleslug(): string
+    {
+        return $this->thearticleslug;
+    }
+
+    /**
+     * @return string
+     */
+    public
+    function getThearticleresume(): string
+    {
+        return $this->thearticleresume;
+    }
+
+    /**
+     * @return string
+     */
+    public
+    function getThearticletext(): string
+    {
+        return $this->thearticletext;
+    }
+
+    /**
+     * @return string
+     */
+    public
+    function getThearticledate(): string
+    {
+        return $this->thearticledate;
+    }
+
+    /**
+     * @return int
+     */
+    public
+    function getThearticleactivate(): int
+    {
+        return $this->thearticleactivate;
+    }
+
+    /**
+     * @return int
+     */
+    public
+    function getTheuserIdtheuser(): int
+    {
+        return $this->theuser_idtheuser;
+    }
+    // getters
+
 }
