@@ -1,5 +1,5 @@
 <?php 
-// var_dump($_SESSION);
+var_dump($_SESSION);
 
 use MyModels\Manager\theuserManager;
 $theuserManager = new theuserManager($pdo);
