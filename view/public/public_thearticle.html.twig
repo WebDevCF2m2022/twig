@@ -15,11 +15,11 @@ Article - {{ monArticle.thearticletitle }}
     <div class="row">
         <div class="col-lg-12">
             <h2 class="fw-bolder">{{ monArticle.thearticletitle }}</h2>
-            <h3>Par {{ monArticle.theuserlogin }} le {{ monArticle.theuserdate|date("d/m/Y \à H") }}h</h3>
+            <h3>Par {{ monArticle.theuserlogin }} le {{ monArticle.theuserdate|date("d/m/Y \à H\\hi") }}</h3>
             <hr>
-            {# dump(monArticle) #}
+            {# dump activé avec $twig->addExtension(new DebugExtension()); et debug = true #}
+            {#  dump(monArticle) #}
             {% set sectionTitle = monArticle.thesectiontitle|split('|||') %}
-            {% set sectionslug = monArticle.thesectionslug|split('|||') %}
             {% set sectionslug = monArticle.thesectionslug|split('|||') %}
             <p>
             {% for key, section in sectionTitle %}
