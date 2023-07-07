@@ -2,3 +2,11 @@
 {% for item in mesSections %}
     <li class="nav-item"><a class="nav-link" href="/sections/{{ item.thesectionslug }}">{{ item.thesectiontitle }}</a></li>
 {% endfor %}
+
+{# Formulaire de recherche #}
+<li class="nav-item">
+    <form class="form-inline my-2 my-lg-0" action="{{ racine }}" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+    </form>
+</li>

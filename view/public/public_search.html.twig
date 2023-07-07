@@ -1,0 +1,33 @@
+{# view/public/public_search.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Résultats de la recherche pour "{{ q }}"</h1>
+
+    <h2>Articles</h2>
+
+    {% for ar in mesArticles %}
+
+        <div>
+            <h1>{{ ar.idthearticle }}</h1>
+            <p>{{ ar.thearticletitle }}</p>
+            <p>{{ ar.thearticleText }}</p>
+            <p>{{ ar.thearticledate|date('d/m/Y') }}</p>
+            <p>{{ ar.thearticleactivate }}</p>
+        </div>
+    {% else %}
+        <p>Aucun article trouvé.</p>
+    {% endfor %}
+
+    <h2>Utilisateurs</h2>
+
+    {% for user in mesUsers %}
+        <div>
+            <h3>{{ user.theuserlogin }}</h3>
+            <p>{{ user.theusermail }}</p>
+            <p>{{ user.theuseruniqid }}</p>
+        </div>
+    {% else %}
+        <p>Aucun utilisateur trouvé.</p>
+    {% endfor %}
+{% endblock %}
